@@ -4,21 +4,17 @@ import { StyleSheet, View, Text } from 'react-native';
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      {/* Profile Image Placeholder */}
-      {/* To use a local image, change the source to: require('@/assets/images/your-image.png') */}
       <Image
-        source={{ uri: 'https://picsum.photos/seed/placeholder/200/200' }} 
+        source={{ uri: 'https://picsum.photos/seed/placeholder/200/200' }}
         style={styles.profileImage}
       />
-      
-      {/* Name Placeholder */}
+
       <Text style={styles.nameText}>
-        [Your Name Here]
+        Ivan Rigz R. Suguran
       </Text>
-      
-      {/* Subtitle Placeholder */}
+
       <Text style={styles.subtitleText}>
-        [Your Details] - [More Details]
+        MMA Students - A301 - CS126
       </Text>
     </View>
   );
@@ -29,16 +25,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F2F2F2', // Light grey background
+    backgroundColor: '#F2F2F2',
   },
   profileImage: {
     width: 150,
     height: 150,
-    borderRadius: 75, // Makes the image circular
+    borderRadius: 75,
     marginBottom: 20,
   },
   nameText: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#000000',
     marginBottom: 6,
