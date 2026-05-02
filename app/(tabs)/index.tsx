@@ -74,6 +74,12 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
       </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Step 4: Customization</ThemedText>
+        <ThemedText>
+          {`I have customised the home screen!`}
+        </ThemedText>
+      </ThemedView>
     </ParallaxScrollView>
   );
 }
