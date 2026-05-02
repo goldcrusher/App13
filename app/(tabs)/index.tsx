@@ -16,6 +16,10 @@ export default function HomeScreen() {
       <Text style={styles.subtitleText}>
         MMA Students - A301 - CS126
       </Text>
+
+      <Text style={styles.subtitleText}>
+        I like minimalistic style design.
+      </Text>
     </View>
   );
 }
