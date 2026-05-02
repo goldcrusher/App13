@@ -5,7 +5,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: 'https://picsum.photos/seed/placeholder/200/200' }}
+        source={require('../../assets/images/profileimage.HEIC')}
         style={styles.profileImage}
       />
 
