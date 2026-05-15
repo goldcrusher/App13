@@ -5,7 +5,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/images/profileimage.HEIC')}
+        source={{ uri: 'https://i.ibb.co/Txy9hd5j/profileimage.avif' }}
         style={styles.profileImage}
       />
 
@@ -48,3 +48,13 @@ const styles = StyleSheet.create({
     color: '#777777',
   },
 });
+
+// F12 Script 
+const myName = "Ivy";
+const greet = (name) => {
+  return `Hi Hi, ${name}!`;
+};
+const classmates = ["Shania", "Ali", "Janine", "Alex", "Erika"];
+classmates.map(name => greet(name));
+
+console.log(classmates.map(name => greet(name)));
