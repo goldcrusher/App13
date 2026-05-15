@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { Image } from 'expo-image';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TextInput } from 'react-native';
 
 export default function HomeScreen() {
+  const [name, setName] = useState('Ivan Rigz R. Suguran');
+
   return (
     <View style={styles.container}>
       <Image
@@ -10,16 +13,17 @@ export default function HomeScreen() {
       />
 
       <Text style={styles.nameText}>
-        Ivan Rigz R. Suguran
+        Hello, {name}!
       </Text>
 
-      <Text style={styles.subtitleText}>
-        MMA Students - A301 - CS126
-      </Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Type your name"
+        value={name}
+        onChangeText={setName}
+      />
 
-      <Text style={styles.subtitleText}>
-        I like minimalistic style design.
-      </Text>
+
     </View>
   );
 }
@@ -47,12 +51,25 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#777777',
   },
+  input: {
+    height: 40,
+    marginTop: 5,
+    marginBottom: 15,
+    borderWidth: 1,
+    borderColor: '#cccccc',
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    width: 200,
+    backgroundColor: '#ffffff',
+    fontSize: 14,
+    textAlign: 'center',
+  },
 });
 
 // F12 Script 
 const myName = "Ivy";
-const greet = (name) => {
-  return `Hi Hi, ${name}!`;
+const greet = (myName) => {
+  return `Hi Hi, ${myName}!`;
 };
 const classmates = ["Shania", "Ali", "Janine", "Alex", "Erika"];
 classmates.map(name => greet(name));
