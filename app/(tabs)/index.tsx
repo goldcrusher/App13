@@ -1,69 +1,80 @@
 import { useState } from 'react';
-import { Image } from 'expo-image';
-import { StyleSheet, View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, Button, Image, ScrollView, StyleSheet } from 'react-native';
 
-export default function HomeScreen() {
-  const [name, setName] = useState('Ivan Rigz R. Suguran');
+export default function App() {
+  // State variables
+  const [name, setName] = useState('');
+  const [count, setCount] = useState(0);
+
+  // Message based on counter
+  const message =
+    count > 0
+      ? `${name}, you tapped ${count} times!`
+      : "Tap the + button to start";
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
+
       <Image
         source={{ uri: 'https://i.ibb.co/Txy9hd5j/profileimage.avif' }}
-        style={styles.profileImage}
+        style={styles.image}
       />
 
-      <Text style={styles.nameText}>
-        Hello, {name}!
-      </Text>
 
       <TextInput
-        style={styles.input}
-        placeholder="Type your name"
-        value={name}
+        placeholder="Enter your name"
         onChangeText={setName}
+        value={name}
+        style={styles.input}
       />
 
 
-    </View>
+      <Text style={styles.text}>
+        {name === '' ? "Please enter your name" : `Hello, ${name}!`}
+      </Text>
+
+      <Text style={styles.text}>{message}</Text>
+
+
+      <View style={styles.buttonContainer}>
+        <Button title="+" onPress={() => setCount(count + 1)} />
+        <Button title="-" onPress={() => setCount(count - 1)} />
+        <Button title="RESET" onPress={() => setCount(0)} />
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F2F2F2',
+    justifyContent: 'center',
+    padding: 20,
+    backgroundColor: '#f4f4f4',
   },
-  profileImage: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
+  image: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
     marginBottom: 20,
   },
-  nameText: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    color: '#000000',
-    marginBottom: 6,
-  },
-  subtitleText: {
-    fontSize: 14,
-    color: '#777777',
-  },
   input: {
-    height: 40,
-    marginTop: 5,
-    marginBottom: 15,
     borderWidth: 1,
-    borderColor: '#cccccc',
-    borderRadius: 8,
-    paddingHorizontal: 15,
-    width: 200,
-    backgroundColor: '#ffffff',
-    fontSize: 14,
-    textAlign: 'center',
+    width: '80%',
+    padding: 10,
+    marginBottom: 10,
+    backgroundColor: 'transparent',
+    borderColor: '#000',
   },
+  text: {
+    fontSize: 16,
+    marginVertical: 5,
+  },
+  buttonContainer: {
+    marginTop: 10,
+    width: '60%',
+  }
 });
 
 // F12 Script 
