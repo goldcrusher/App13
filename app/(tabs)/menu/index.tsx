@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const menuItems = [
@@ -8,13 +8,16 @@ const menuItems = [
   { id: '3', category: 'HOT DRINKS', name: 'Latte', price: 'P160', description: 'Coffee drink made with espresso and steamed milk.' },
   { id: '4', category: 'COLD DRINKS', name: 'Iced Coffee', price: 'P130', description: 'Refreshing iced coffee.' },
   { id: '5', category: 'COLD DRINKS', name: 'Frappuccino', price: 'P170', description: 'Blended iced coffee drink.' },
+  { id: '6', category: 'DESSERTS', name: 'Cheesecake', price: 'P180', description: 'Classic New York style cheesecake.' },
+  { id: '7', category: 'DESSERTS', name: 'Brownie', price: 'P100', description: 'Fudgy chocolate brownie.' },
+  { id: '8', category: 'MEALS', name: 'Salad', price: 'P200', description: 'Fresh garden salad.' },
+  { id: '9', category: 'MEALS', name: 'Pasta', price: 'P250', description: 'Creamy carbonara pasta.' },
 ];
 
 export default function MenuScreen() {
   const navigation = useNavigation<any>();
 
   const handlePress = (item: any) => {
-    // navigation.navigate() working (Menu -> Detail)
     navigation.navigate('details', { item });
   };
 
@@ -28,7 +31,7 @@ export default function MenuScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>The Grande Café Menu</Text>
+      <Text style={styles.title}>☕ Coffee Shop Menu</Text>
 
       <FlatList
         data={menuItems}
@@ -47,8 +50,10 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   title: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    fontStyle: 'italic',
     color: '#4A2511',
     marginLeft: 20,
     marginBottom: 20,
@@ -77,6 +82,7 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: '600',
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
     color: '#4A2511',
     marginBottom: 4,
   },

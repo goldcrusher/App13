@@ -2,11 +2,9 @@ import { useState } from 'react';
 import { View, Text, TextInput, Button, Image, ScrollView, StyleSheet } from 'react-native';
 
 export default function App() {
-  // State variables
   const [name, setName] = useState('');
   const [count, setCount] = useState(0);
 
-  // Message based on counter
   const message =
     count > 0
       ? `${name}, you tapped ${count} times!`
@@ -76,7 +74,6 @@ const styles = StyleSheet.create({
   }
 });
 
-// F12 Script 
 const myName = "Ivy";
 const greet = (myName: string) => {
   return `Hi Hi, ${myName}!`;
