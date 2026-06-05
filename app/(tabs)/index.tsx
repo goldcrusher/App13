@@ -14,7 +14,6 @@ export default function App() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-
       <Image
         source={{ uri: 'https://i.ibb.co/Txy9hd5j/profileimage.avif' }}
         style={styles.image}
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
 
 // F12 Script 
 const myName = "Ivy";
-const greet = (myName) => {
+const greet = (myName: string) => {
   return `Hi Hi, ${myName}!`;
 };
 const classmates = ["Shania", "Ali", "Janine", "Alex", "Erika"];
