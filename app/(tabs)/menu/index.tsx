@@ -3,15 +3,15 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity, Platform } from 're
 import { useNavigation } from '@react-navigation/native';
 
 const menuItems = [
-  { id: '1', category: 'HOT DRINKS', name: 'Americano', price: 'P120', description: 'Bold and strong black coffee brewed with espresso shots.' },
-  { id: '2', category: 'HOT DRINKS', name: 'Cappuccino', price: 'P150', description: 'Espresso-based coffee prepared with steamed milk foam.' },
-  { id: '3', category: 'HOT DRINKS', name: 'Latte', price: 'P160', description: 'Coffee drink made with espresso and steamed milk.' },
-  { id: '4', category: 'COLD DRINKS', name: 'Iced Coffee', price: 'P130', description: 'Refreshing iced coffee.' },
-  { id: '5', category: 'COLD DRINKS', name: 'Frappuccino', price: 'P170', description: 'Blended iced coffee drink.' },
-  { id: '6', category: 'DESSERTS', name: 'Cheesecake', price: 'P180', description: 'Classic New York style cheesecake.' },
-  { id: '7', category: 'DESSERTS', name: 'Brownie', price: 'P100', description: 'Fudgy chocolate brownie.' },
-  { id: '8', category: 'MEALS', name: 'Salad', price: 'P200', description: 'Fresh garden salad.' },
-  { id: '9', category: 'MEALS', name: 'Pasta', price: 'P250', description: 'Creamy carbonara pasta.' },
+  { id: '1', category: 'Hot Drinks', name: 'Americano', price: '₱120', desc: 'Bold and strong black coffee brewed with espresso shots.' },
+  { id: '2', category: 'Hot Drinks', name: 'Cappuccino', price: '₱150', desc: 'Classic Italian coffee with equal parts espresso, steamed milk, and foam.' },
+  { id: '3', category: 'Hot Drinks', name: 'Latte', price: '₱160', desc: 'Smooth espresso blended with creamy steamed milk.' },
+  { id: '4', category: 'Cold Drinks', name: 'Iced Coffee', price: '₱130', desc: 'Chilled brewed coffee served over ice for a refreshing kick.' },
+  { id: '5', category: 'Cold Drinks', name: 'Frappuccino', price: '₱175', desc: 'Blended iced coffee drink topped with whipped cream.' },
+  { id: '6', category: 'Desserts', name: 'Cheesecake', price: '₱180', description: 'Classic New York style cheesecake.' },
+  { id: '7', category: 'Desserts', name: 'Brownie', price: '₱100', description: 'Fudgy chocolate brownie.' },
+  { id: '8', category: 'Meals', name: 'Salad', price: '₱200', description: 'Fresh garden salad.' },
+  { id: '9', category: 'Meals', name: 'Pasta', price: '₱250', description: 'Creamy carbonara pasta.' },
 ];
 
 export default function MenuScreen() {
