@@ -1,21 +1,41 @@
-import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-const menuItems = [
-  { id: '1', category: 'Hot Drinks', name: 'Americano', price: '₱120', desc: 'Bold and strong black coffee brewed with espresso shots.' },
-  { id: '2', category: 'Hot Drinks', name: 'Cappuccino', price: '₱150', desc: 'Classic Italian coffee with equal parts espresso, steamed milk, and foam.' },
-  { id: '3', category: 'Hot Drinks', name: 'Latte', price: '₱160', desc: 'Smooth espresso blended with creamy steamed milk.' },
-  { id: '4', category: 'Cold Drinks', name: 'Iced Coffee', price: '₱130', desc: 'Chilled brewed coffee served over ice for a refreshing kick.' },
-  { id: '5', category: 'Cold Drinks', name: 'Frappuccino', price: '₱175', desc: 'Blended iced coffee drink topped with whipped cream.' },
-  { id: '6', category: 'Desserts', name: 'Cheesecake', price: '₱180', description: 'Classic New York style cheesecake.' },
-  { id: '7', category: 'Desserts', name: 'Brownie', price: '₱100', description: 'Fudgy chocolate brownie.' },
-  { id: '8', category: 'Meals', name: 'Salad', price: '₱200', description: 'Fresh garden salad.' },
-  { id: '9', category: 'Meals', name: 'Pasta', price: '₱250', description: 'Creamy carbonara pasta.' },
-];
 
 export default function MenuScreen() {
   const navigation = useNavigation<any>();
+  const [menuItems, setMenuItems] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        const response = await fetch('https://api.sampleapis.com/coffee/iced');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        
+        // Map the API data to match our app's structure
+        const formattedData = data.slice(0, 10).map((item: any, index: number) => ({
+          id: item.id.toString(),
+          category: index % 2 === 0 ? 'HOT DRINKS' : 'COLD DRINKS', // mock categories
+          name: item.title,
+          price: `P${100 + index * 10}`, // mock prices
+          description: item.description,
+        }));
+        
+        setMenuItems(formattedData);
+      } catch (err) {
+        setError('No internet connection or failed to load menu.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenu();
+  }, []);
 
   const handlePress = (item: any) => {
     navigation.navigate('details', { item });
@@ -31,14 +51,20 @@ export default function MenuScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>☕ Coffee Shop Menu</Text>
+      <Text style={styles.title}>The Grande Café Menu</Text>
 
-      <FlatList
-        data={menuItems}
-        keyExtractor={item => item.id}
-        renderItem={renderItem}
-        contentContainerStyle={styles.listContainer}
-      />
+      {loading ? (
+        <ActivityIndicator size="large" color="#4A2511" style={{ marginTop: 20 }} />
+      ) : error ? (
+        <Text style={styles.errorText}>{error}</Text>
+      ) : (
+        <FlatList
+          data={menuItems}
+          keyExtractor={item => item.id}
+          renderItem={renderItem}
+          contentContainerStyle={styles.listContainer}
+        />
+      )}
     </View>
   );
 }
@@ -50,10 +76,8 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
-    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
-    fontStyle: 'italic',
     color: '#4A2511',
     marginLeft: 20,
     marginBottom: 20,
@@ -82,7 +106,6 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: '600',
-    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
     color: '#4A2511',
     marginBottom: 4,
   },
@@ -90,5 +113,11 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#D2691E',
     fontWeight: 'bold',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
