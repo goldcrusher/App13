@@ -31,7 +31,7 @@ export default function CartScreen() {
       await AsyncStorage.setItem('@cart_note', dataToSave);
       setSavedNote(note);
       setSavedTime(time);
-      setNote(''); // Clear input after saving
+      setNote('');
     } catch (e) {
       console.error('Failed to save note', e);
     }
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#2E4C34', // Dark green header from the image
+    color: '#2E4C34',
     marginBottom: 20,
   },
   section: {
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   savedSection: {
-    backgroundColor: '#F0FFF0', // light green background
+    backgroundColor: '#F0FFF0',
     padding: 15,
     borderRadius: 4,
     marginBottom: 20,

@@ -17,12 +17,11 @@ export default function MenuScreen() {
         }
         const data = await response.json();
         
-        // Map the API data to match our app's structure
         const formattedData = data.slice(0, 10).map((item: any, index: number) => ({
           id: item.id.toString(),
-          category: index % 2 === 0 ? 'HOT DRINKS' : 'COLD DRINKS', // mock categories
+          category: index % 2 === 0 ? 'HOT DRINKS' : 'COLD DRINKS',
           name: item.title,
-          price: `P${100 + index * 10}`, // mock prices
+          price: `P${100 + index * 10}`,
           description: item.description,
         }));
         
