@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, ActivityIndicator, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function MenuScreen() {
@@ -16,7 +16,7 @@ export default function MenuScreen() {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        
+
         const formattedData = data.slice(0, 10).map((item: any, index: number) => ({
           id: item.id.toString(),
           category: index % 2 === 0 ? 'HOT DRINKS' : 'COLD DRINKS',
@@ -24,7 +24,7 @@ export default function MenuScreen() {
           price: `P${100 + index * 10}`,
           description: item.description,
         }));
-        
+
         setMenuItems(formattedData);
       } catch (err) {
         setError('No internet connection or failed to load menu.');
@@ -52,8 +52,9 @@ export default function MenuScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>The Grande Café Menu</Text>
 
+
       {loading ? (
-        <ActivityIndicator size="large" color="#4A2511" style={{ marginTop: 20 }} />
+        <ActivityIndicator size="large" color="#C67B54" style={{ marginTop: 20 }} />
       ) : error ? (
         <Text style={styles.errorText}>{error}</Text>
       ) : (
@@ -71,15 +72,15 @@ export default function MenuScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFBF0',
+    backgroundColor: '#F7F1EB',
     paddingTop: 20,
   },
   title: {
     fontSize: 22,
     fontWeight: 'bold',
-    color: '#4A2511',
-    marginLeft: 20,
+    color: '#323232',
     marginBottom: 20,
+    textAlign: 'center',
   },
   listContainer: {
     paddingHorizontal: 20,
@@ -87,31 +88,34 @@ const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#EFEFEF',
+    borderColor: '#E0E0E0',
     borderRadius: 8,
     padding: 15,
     marginBottom: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 5,
+    boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.05)',
     elevation: 2,
+    alignItems: 'center',
   },
   category: {
     fontSize: 10,
-    color: '#A89F91',
+    color: '#323232',
     marginBottom: 4,
     fontWeight: 'bold',
+    letterSpacing: 1,
+    textAlign: 'center',
   },
   name: {
     fontSize: 18,
     fontWeight: '600',
-    color: '#4A2511',
+    color: '#323232',
     marginBottom: 4,
+    textAlign: 'center',
   },
   price: {
     fontSize: 14,
-    color: '#D2691E',
+    color: '#C67B54',
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   errorText: {
     color: 'red',

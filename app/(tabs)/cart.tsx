@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function CartScreen() {
@@ -40,15 +40,17 @@ export default function CartScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.headerTitle}>Cart Screen</Text>
-      
+
       <View style={styles.section}>
         <Text style={styles.label}>SPECIAL INSTRUCTIONS:</Text>
+
         <TextInput
           style={styles.input}
           placeholder="e.g. Extra sugar, no ice..."
           value={note}
           onChangeText={setNote}
         />
+
         <TouchableOpacity style={styles.saveButton} onPress={saveNote}>
           <Text style={styles.saveButtonText}>Save Note</Text>
         </TouchableOpacity>
@@ -65,7 +67,7 @@ export default function CartScreen() {
           <Text style={styles.savedTimeText}>No note saved yet.</Text>
         )}
       </View>
-      
+
       <TouchableOpacity style={styles.summaryButton}>
         <Text style={styles.summaryButtonText}>View Order Summary</Text>
       </TouchableOpacity>
@@ -76,66 +78,82 @@ export default function CartScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F7F1EB',
     padding: 20,
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#2E4C34',
+    color: '#323232',
     marginBottom: 20,
+    textAlign: 'center',
   },
   section: {
     marginBottom: 20,
+    alignItems: 'center',
   },
   label: {
     fontSize: 12,
-    color: '#888',
+    color: '#323232',
     marginBottom: 8,
     textTransform: 'uppercase',
+    letterSpacing: 1,
+    textAlign: 'center',
   },
   input: {
     borderWidth: 1,
     borderColor: '#E0E0E0',
+    backgroundColor: '#FFFFFF',
+    color: '#323232',
     borderRadius: 4,
     padding: 10,
     marginBottom: 10,
     fontSize: 14,
+    textAlign: 'center',
+    width: '100%',
   },
   saveButton: {
-    backgroundColor: '#1E4620',
+    backgroundColor: '#C67B54',
     padding: 12,
     borderRadius: 4,
     alignItems: 'center',
+    width: '100%',
   },
   saveButtonText: {
-    color: '#FFF',
+    color: '#FFFFFF',
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   savedSection: {
-    backgroundColor: '#F0FFF0',
+    backgroundColor: '#FFFFFF',
+    borderColor: '#E0E0E0',
+    borderWidth: 1,
     padding: 15,
-    borderRadius: 4,
+    borderRadius: 8,
     marginBottom: 20,
+    alignItems: 'center',
   },
   savedNoteText: {
-    fontSize: 16,
-    color: '#1E4620',
+    fontSize: 22,
+    color: '#323232',
     fontWeight: 'bold',
     marginBottom: 4,
+    textAlign: 'center',
   },
   savedTimeText: {
     fontSize: 12,
-    color: '#888',
+    color: '#323232',
+    textAlign: 'center',
   },
   summaryButton: {
-    backgroundColor: '#1E4620',
+    backgroundColor: '#C67B54',
     padding: 12,
     borderRadius: 4,
     alignItems: 'center',
   },
   summaryButtonText: {
-    color: '#FFF',
+    color: '#FFFFFF',
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
